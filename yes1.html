@@ -1,37 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="container">
-      <div>
-        <h1 class="header_text">Yeeyy ! Finally</h1>
-      </div>
-      <div class="gif_container">
-        <img
-          src="https://i.postimg.cc/wTDG30TB/yes.gif"
-          alt="Cute animated illustration"
-        />
-      </div>
-      <button class="btn" id="fixDateButton">Let's Fix a Date</button>
+<head>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <div>
+      <h1 class="header_text">Yeeyy ! Finally</h1>
     </div>
+    <div class="gif_container">
+      <img src="https://i.postimg.cc/wTDG30TB/yes.gif" alt="Cute animated illustration">
+    </div>
+    <button class="btn" id="fixDateButton">Let's Go to ISKCON!</button>
+  </div>
 
-    <script>
-      // Select the button element
-      const fixDateButton = document.querySelector('#fixDateButton');
+  <script>
+    // Select the button element
+    const fixDateButton = document.querySelector('#fixDateButton');
 
-      // Add a click event listener to the button
-      fixDateButton.addEventListener('click', () => {
-        // Prompt the user to enter a date
-        const fixedDate = prompt('Enter the date you want to fix: (YYYY-MM-DD)');
+    // Add a click event listener to the button
+    fixDateButton.addEventListener('click', () => {
+      // Construct the pre-filled Google Calendar event URL
+      const eventUrl = `https://calendar.google.com/calendar/r/eventedit?text=Let's+go+to+ISKCON+together&add=rutvik0888@gmail.com&location=ISKCON+Hyderabad,+Old+Kattal+Mandi,+Abids,+Hyderabad,+Telangana+500001`;
 
-        // Create a Google Calendar event URL with the specified date and title
-  const eventUrl = `https://calendar.google.com/calendar/r/eventedit?text=Let's+go+to+ISKCON+together&dates=${fixedDate}&add=rutvik0888@gmail.com&location=ISKCON+Hyderabad,+Old+Kattal+Mandi,+Abids,+Hyderabad,+Telangana+500001`;
-
-        // Open the Google Calendar event creation page in a new tab
-        window.open(eventUrl, '_blank');
-      });
-    </script>
-  </body>
+      // Redirect to the event creation page directly
+      window.location.href = eventUrl;
+    });
+  </script>
+</body>
 </html>
