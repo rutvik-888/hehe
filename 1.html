@@ -17,24 +17,44 @@
       <button class="btn" id="fixDateButton">Let's Fix a Date</button>
     </div>
     
-  <script>
+ <script>
   // Select the button element
   const fixDateButton = document.querySelector('#fixDateButton');
 
   // Add a click event listener to the button
   fixDateButton.addEventListener('click', () => {
-    // Prompt the user to enter a date
-    let selectedDate = prompt('Enter the date you want to fix: (DDMMYYYY)');
+    // Prompt the user to enter the date in a mobile-friendly way
+    const selectedDate = prompt('Enter the date you want to fix: (DD/MM/YYYY)', '');
 
-    // Format the date with "/" separators
-    selectedDate = selectedDate.slice(0, 2) + "/" + selectedDate.slice(2, 4) + "/" + selectedDate.slice(4);
+    // Enforce number input and format validation
+    let formattedDate = '';
+    for (const char of selectedDate) {
+      if (!isNaN(char) && formattedDate.length < 10) {
+        formattedDate += char;
+        if (formattedDate.length === 2 || formattedDate.length === 5) {
+          formattedDate += '/';
+        }
+      }
+    }
 
-    // Create a Google Calendar event URL with the formatted date and title
-    const eventUrl = `https://calendar.google.com/calendar/r/eventedit?text=Let's+go+to+ISKCON+together&dates=${selectedDate}&allday=true&add=rutvik0888@gmail.com&location=ISKCON+Hyderabad,+Old+Kattal+Mandi,+Abids,+Hyderabad,+Telangana+500001`;
+    if (!isValidDate(formattedDate)) {
+      alert('Please enter a valid date in the format DD/MM/YYYY');
+      return;
+    }
+
+    // Create the Google Calendar event URL with the formatted date
+    const eventUrl = `https://calendar.google.com/calendar/r/eventedit?text=Let's+go+to+ISKCON+together&dates=${formattedDate}&allday=true&add=rutvik0888@gmail.com&location=ISKCON+Hyderabad,+Old+Kattal+Mandi,+Abids,+Hyderabad,+Telangana+500001`;
 
     // Open the Google Calendar event creation page in a new tab
     window.open(eventUrl, '_blank');
   });
+
+  // Function to validate the date format
+  function isValidDate(dateString) {
+    const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+    return dateRegex.test(dateString);
+  }
 </script>
+
     </body>
 </html>
