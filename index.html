@@ -45,6 +45,20 @@
             document.getElementById("noButton").style.left = `${x}px`;
             document.getElementById("noButton").style.top = `${y}px`;
           }
+          fixDateButton.addEventListener('click', () => {
+      const eventUrl = `https://calendar.google.com/calendar/r/eventedit?text=Let's+go+to+ISKCON+together&allday=true&add=rutvik0888@gmail.com&location=ISKCON+Hyderabad,+Old+Kattal+Mandi,+Abids,+Hyderabad,+Telangana+500001`;
+
+      // Attempt to open the Google Calendar app on mobile devices
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        const appUrl = `googlecalendar://www.google.com/calendar/event?${eventUrl.slice(24)}`; // Adjust for correct app URL scheme
+        window.location = appUrl;
+      } else {
+        // Open the modal with the event creation page on desktop
+        $('#calendarModal').modal({
+          // ... (previous modal settings remain the same)
+        });
+      }
+    });
         </script>
       </div>
     </div>
