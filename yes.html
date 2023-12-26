@@ -32,11 +32,9 @@
         onShow: () => {
           $('#calendarModal').load(eventUrl); // Load the event creation page into the modal
         }
-      // ... (previous code remains the same)
-
-    fixDateButton.addEventListener('click', () => {
-      const eventUrl = `https://calendar.google.com/calendar/r/eventedit?text=Let's+go+to+ISKCON+together&allday=true&add=rutvik0888@gmail.com&location=ISKCON+Hyderabad,+Old+Kattal+Mandi,+Abids,+Hyderabad,+Telangana+500001`;
-
+// Open the Google Calendar event creation page in a new tab
+        window.open(eventUrl, '_blank');
+      
       // Attempt to open the Google Calendar app on mobile devices
       if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         const appUrl = `googlecalendar://www.google.com/calendar/event?${eventUrl.slice(24)}`; // Adjust for correct app URL scheme
@@ -44,7 +42,6 @@
       } else {
         // Open the modal with the event creation page on desktop
         $('#calendarModal').modal({
-          // ... (previous modal settings remain the same)
         });
       }
     });
